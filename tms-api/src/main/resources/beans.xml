@@ -12,7 +12,7 @@
         <property name="locations" value="file:///etc/ligthtms/api/tms-api.properties"/>
     </bean>
 
-    <bean id="apiProps" class="ru.yandex.aqua.beans.ConfigUtils">
+    <bean id="apiProps" class="ru.lighttms.tms.beans.ConfigUtils">
         <property name="mongoReplicaSet"><value>${mongo.replicaSet}</value></property>
         <property name="mongoDbName"><value>${mongo.dbname}</value></property>
         <property name="mongoUserName"><value>${mongo.username}</value></property>
