@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+
+    <appender name="CONSOLE" class="org.apache.log4j.RollingFileAppender">
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="[%d] %-5p [%t] %m%n"/>
+        </layout>
+        <param name="File" value="${servant.log.file}"/>
+        <param name="MaxFileSize" value="100MB"/>
+        <param name="MaxBackupIndex" value="10"/>
+    </appender>
+
+    <appender name="ASYNC" class="org.apache.log4j.AsyncAppender">
+        <param name="BufferSize" value="1024"/>
+        <appender-ref ref="CONSOLE"/>
+    </appender>
+
+    <appender name="EVENT_SMTP" class="ru.yandex.common.util.log.SilentSMTPAppender">
+        <param name="Threshold" value="ERROR"/>
+        <param name="To"
+               value="root-qa@yandex-team.ru"/>
+        <param name="From" value="kirill@yandex-team.ru"/>
+        <param name="Subject" value="Aqua Error"/>
+        <param name="SMTPHost" value="outbound-relay.yandex.net"/>
+        <param name="BufferSize" value="10"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%t %d{HH:mm:ss} %p %m IN %c%n"/>
+        </layout>
+    </appender>
+    <appender name="ASYNC_EMAIL" class="org.apache.log4j.AsyncAppender">
+        <param name="BufferSize" value="1024"/>
+        <appender-ref ref="EVENT_SMTP"/>
+    </appender>
+
+    <appender name="STAT" class="ru.yandex.common.util.log.StatDumpAppender"/>
+
+    <category name="org" additivity="false">
+        <level value="DEBUG"/>
+        <appender-ref ref="ASYNC"/>
+        <appender-ref ref="STAT"/>
+    </category>
+
+    <category name="ru.yandex" additivity="true">
+        <level value="DEBUG"/>
+        <appender-ref ref="ASYNC_EMAIL"/>
+        <appender-ref ref="STAT"/>
+    </category>
+
+    <root>
+        <priority value="DEBUG"/>
+        <appender-ref ref="ASYNC"/>
+    </root>
+</log4j:configuration>
+
