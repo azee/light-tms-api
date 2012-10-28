@@ -14,6 +14,7 @@ import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import ru.lighttms.tms.beans.ConfigUtils;
 import ru.lighttms.tms.beans.Project;
+import ru.lighttms.tms.beans.Suite;
 import ru.lighttms.tms.beans.User;
 import ru.lighttms.tms.utils.UserUtils;
 
@@ -74,12 +75,45 @@ public class MongoHelper {
         mongoOperation.save(project, "tms_project");
     }
 
-    public static void removeProject(String name) throws Exception {
-        Project project = getProject(name);
+    public static void removeProject(String id) throws Exception {
+        Project project = getProject(id);
         reconnectToMongo();
 
         //Removing old tests
         mongoOperation.remove(project, "tms_project");
+    }
+
+
+    /**
+    * Suites
+    */
+    public static List<Suite> getAllSuites() throws Exception {
+        reconnectToMongo();
+        return mongoOperation.findAll(Suite.class, "tms_suite");
+    }
+
+    public static Suite getSuite(String id) throws Exception {
+        reconnectToMongo();
+        Query query = new Query();
+        query.addCriteria(Criteria.where("id").is(id));
+        return mongoOperation.findOne(query, Suite.class, "tms_suite");
+    }
+
+    public static void createSuite(Suite suite) throws Exception {
+        reconnectToMongo();
+        mongoOperation.insert(suite, "tms_suite");
+    }
+
+
+    public static void updateSuite(Suite suite) throws Exception {
+        reconnectToMongo();
+        mongoOperation.save(suite, "tms_suite");
+    }
+
+    public static void removeSuite(String id) throws Exception {
+        Suite suite = getSuite(id);
+        reconnectToMongo();
+        mongoOperation.remove(suite, "tms_suite");
     }
 
 

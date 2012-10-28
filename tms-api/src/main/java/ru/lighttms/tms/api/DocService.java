@@ -9,8 +9,6 @@ import javax.ws.rs.core.MediaType;
 import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerFactory;
 
-import com.sun.jersey.spi.resource.Singleton;
-
 /**
  * Created by IntelliJ IDEA.
  * User: azee
