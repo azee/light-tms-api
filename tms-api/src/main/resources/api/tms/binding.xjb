@@ -33,10 +33,9 @@
 
         <jaxb:bindings node="xs:complexType[@name='Suite']/xs:sequence/xs:element[@name='testCase']">
             <annox:annotate target="field">
-                <annox:annotate annox:class="org.springframework.data.mongodb.core.mapping.DBRef" collection = "tms_suite"/>
+                <annox:annotate annox:class="org.springframework.data.mongodb.core.mapping.DBRef" collection = "tms_testcase"/>
             </annox:annotate>
         </jaxb:bindings>
-
 
 
         <jaxb:bindings node="xs:complexType[@name='Suite']">
@@ -49,6 +48,7 @@
                 <annox:annotate annox:class="org.springframework.data.annotation.Id"/>
             </annox:annotate>
         </jaxb:bindings>
+
 
     </jaxb:bindings>
 

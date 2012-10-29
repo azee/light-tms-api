@@ -12,10 +12,7 @@ import org.springframework.data.mongodb.config.AbstractMongoConfiguration;
 import org.springframework.data.mongodb.core.MongoOperations;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
-import ru.lighttms.tms.beans.ConfigUtils;
-import ru.lighttms.tms.beans.Project;
-import ru.lighttms.tms.beans.Suite;
-import ru.lighttms.tms.beans.User;
+import ru.lighttms.tms.beans.*;
 import ru.lighttms.tms.utils.UserUtils;
 
 import java.util.*;
@@ -114,6 +111,34 @@ public class MongoHelper {
         Suite suite = getSuite(id);
         reconnectToMongo();
         mongoOperation.remove(suite, "tms_suite");
+    }
+
+
+    /**
+    * TestCases
+    */
+
+    public static TestCase getTestCase(String id) throws Exception {
+        reconnectToMongo();
+        Query query = new Query();
+        query.addCriteria(Criteria.where("id").is(id));
+        return mongoOperation.findOne(query, TestCase.class, "tms_testcase");
+    }
+
+    public static void createTestCase(TestCase testCase) throws Exception {
+        reconnectToMongo();
+        mongoOperation.insert(testCase, "tms_testcase");
+    }
+
+    public static void updateTestCase(TestCase testCase) throws Exception {
+        reconnectToMongo();
+        mongoOperation.save(testCase, "tms_testcase");
+    }
+
+    public static void removeTestCase(String id) throws Exception {
+        Suite suite = getSuite(id);
+        reconnectToMongo();
+        mongoOperation.remove(suite, "tms_testcase");
     }
 
 
