@@ -17,7 +17,7 @@ public class Main {
     public static void main(String[] args) throws Exception {
         Server server = new Server(9001);
         Context root = new Context(server, "/", Context.SESSIONS);
-        root.addServlet(new ServletHolder(new ServletContainer(new PackagesResourceConfig("ru.yandex.aqua.api"))), "/aqua-api/services/*");
+        root.addServlet(new ServletHolder(new ServletContainer(new PackagesResourceConfig("ru.lighttms.tms.api"))), "/tms-api/*");
         server.start();
     }
 
