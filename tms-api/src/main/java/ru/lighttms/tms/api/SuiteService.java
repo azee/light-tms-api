@@ -57,7 +57,7 @@ public class SuiteService {
     }
 
     /**
-     * Remove a Project
+     * Remove a Suite
      * @param - String id
      */
     @DELETE
