@@ -4,35 +4,34 @@ package ru.lighttms.ui.actions;
  * Created by IntelliJ IDEA.
  * User: azee
  */
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
-import net.viralpatel.struts.helloworld.form.LoginForm;
+public class LoginAction {
 
-import org.apache.struts.action.Action;
-import org.apache.struts.action.ActionForm;
-import org.apache.struts.action.ActionForward;
-import org.apache.struts.action.ActionMapping;
-import ru.lighttms.ui.forms.LoginForm;
+    private String message;
 
-public class LoginAction extends Action {
+    private String userName;
 
-    public ActionForward execute(ActionMapping mapping, ActionForm form,
-            HttpServletRequest request, HttpServletResponse response)
-            throws Exception {
+    public LoginAction() {
+    }
 
-        String target = null;
-        LoginForm loginForm = (LoginForm)form;
+    public String execute() {
+        setMessage("Hello " + getUserName());
+        return "SUCCESS";
+    }
 
-        if(loginForm.getUserName().equals("admin")
-                && loginForm.getPassword().equals("admin123")) {
-            target = "success";
-            request.setAttribute("message", loginForm.getPassword());
-        }
-        else {
-            target = "failure";
-        }
+    public String getMessage() {
+        return message;
+    }
 
-        return mapping.findForward(target);
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 }

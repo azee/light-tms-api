@@ -4,6 +4,7 @@ package ru.lighttms.ui.forms;
  * Created by IntelliJ IDEA.
  * User: azee
  */
+
 import javax.servlet.http.HttpServletRequest;
 import org.apache.struts.action.ActionErrors;
 import org.apache.struts.action.ActionForm;

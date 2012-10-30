@@ -2,12 +2,8 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <parent>
-        <groupId>ru.lighttms.tms</groupId>
-        <artifactId>tms</artifactId>
-        <version>1.0-SNAPSHOT</version>
-    </parent>
-
+    <groupId>ru.lighttms.tms</groupId>
+    <version>1.0-SNAPSHOT</version>
     <artifactId>tms-ui</artifactId>
 
     <name>LightTms UI</name>
@@ -75,6 +71,23 @@
             <version>1.5</version>
         </dependency>
 
+        <!-- Struuts -->
+
+        <dependency>
+	        <groupId>org.apache.struts</groupId>
+	        <artifactId>struts2-core</artifactId>
+	        <version>2.3.1.2</version>
+        </dependency>
+
+
+        <!-- Log4j -->
+        <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+            <version>1.2.16</version>
+        </dependency>
+
+
 
     </dependencies>
 
@@ -99,11 +112,31 @@
                             <goal>copy-dependencies</goal>
                         </goals>
                         <configuration>
-                            <outputDirectory>WebContent/WEB-INF/lib</outputDirectory>
+                            <outputDirectory>webapp/WEB-INF/lib</outputDirectory>
                         </configuration>
                     </execution>
                 </executions>
             </plugin>
+            <plugin>
+				<groupId>org.mortbay.jetty</groupId>
+				<artifactId>maven-jetty-plugin</artifactId>
+				<version>6.1.24</version>
+				<configuration>
+					<connectors>
+						<connector implementation="org.mortbay.jetty.nio.SelectChannelConnector">
+							<port>8090</port>
+							<maxIdleTime>60000</maxIdleTime>
+						</connector>
+					</connectors>
+					<requestLog implementation="org.mortbay.jetty.NCSARequestLog">
+						<filename>target/yyyy_mm_dd.request.log</filename>
+						<retainDays>90</retainDays>
+						<append>true</append>
+						<extended>false</extended>
+						<logTimeZone>GMT</logTimeZone>
+					</requestLog>
+				</configuration>
+			</plugin>
         </plugins>
     </build>
 
