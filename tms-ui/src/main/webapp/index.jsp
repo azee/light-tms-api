@@ -3,14 +3,14 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-        <title>Login page | Hello World Struts application in Eclipse</title>
+        <title>Index page | Hello World Struts application in Eclipse</title>
     </head>
     <body>
         <h1>Login</h1>
-        <s:form action="LoginAction">
-		    <s:textfield name="username" label="Username" />
+        <form action="LoginAction" method="post">
+		    <s:textfield name="userName" label="Username" />
 		    <s:password name="password" label="Password" />
 		    <s:submit />
-	    </s:form>
+	    </form>
     </body>
 </html>

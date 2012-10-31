@@ -7,10 +7,10 @@
     </head>
     <body>
         <h1>Login</h1>
-        <s:form action="LoginAction">
-		    <s:textfield name="username" label="Username" />
+        <form action="LoginAction" method="post">
+		    <s:textfield name="userName" label="Username" />
 		    <s:password name="password" label="Password" />
 		    <s:submit />
-	    </s:form>
+	    </form>
     </body>
 </html>
