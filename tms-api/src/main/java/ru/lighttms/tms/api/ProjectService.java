@@ -6,7 +6,6 @@ import ru.lighttms.tms.helpers.MongoHelper;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import javax.ws.rs.core.Response.ResponseBuilder;
 import java.util.List;
 
 /**
@@ -48,9 +47,9 @@ public class ProjectService {
     @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
     @Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
     @Path("/")
-    public ResponseBuilder createProject(Project project) throws Exception {
+    public Response createProject(Project project) throws Exception {
         MongoHelper.createProject(project);
-        return Response.ok();
+        return Response.ok().build();
     }
 
     /**
@@ -61,9 +60,9 @@ public class ProjectService {
     @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
     @Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
     @Path("/")
-    public ResponseBuilder updateProject(Project project) throws Exception {
+    public Response updateProject(Project project) throws Exception {
         MongoHelper.updateProject(project);
-        return Response.ok();
+        return Response.ok().build();
     }
 
     /**
@@ -73,9 +72,9 @@ public class ProjectService {
     @DELETE
     @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
     @Path("/{id}")
-    public ResponseBuilder removeProject(@PathParam("id") final String id) throws Exception {
+    public Response removeProject(@PathParam("id") final String id) throws Exception {
         MongoHelper.removeProject(id);
-        return Response.ok();
+        return Response.ok().build();
     }
 
 }

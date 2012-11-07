@@ -1,13 +1,11 @@
 package ru.lighttms.tms.api;
 
-import ru.lighttms.tms.beans.Suite;
 import ru.lighttms.tms.beans.TestCase;
 import ru.lighttms.tms.helpers.MongoHelper;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import javax.ws.rs.core.Response.ResponseBuilder;
 
 
 /**
@@ -39,9 +37,9 @@ public class CaseService {
     @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
     @Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
     @Path("/")
-    public ResponseBuilder createTestCase(TestCase testCase) throws Exception {
+    public Response createTestCase(TestCase testCase) throws Exception {
         MongoHelper.createTestCase(testCase);
-        return Response.ok();
+        return Response.ok().build();
     }
 
     /**
@@ -52,9 +50,9 @@ public class CaseService {
     @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
     @Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
     @Path("/")
-    public ResponseBuilder updateTestCase(TestCase testCase) throws Exception {
+    public Response updateTestCase(TestCase testCase) throws Exception {
         MongoHelper.updateTestCase(testCase);
-        return Response.ok();
+        return Response.ok().build();
     }
 
     /**
@@ -64,9 +62,9 @@ public class CaseService {
     @DELETE
     @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
     @Path("/{id}")
-    public ResponseBuilder removeTestCase(@PathParam("id") final String id) throws Exception {
+    public Response removeTestCase(@PathParam("id") final String id) throws Exception {
         MongoHelper.removeTestCase(id);
-        return Response.ok();
+        return Response.ok().build();
     }
 
 

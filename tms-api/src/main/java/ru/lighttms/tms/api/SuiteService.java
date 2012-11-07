@@ -6,7 +6,7 @@ import ru.lighttms.tms.helpers.MongoHelper;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import javax.ws.rs.core.Response.ResponseBuilder;
+
 
 
 /**
@@ -38,9 +38,9 @@ public class SuiteService {
     @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
     @Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
     @Path("/")
-    public ResponseBuilder createSuite(Suite suite) throws Exception {
+    public Response createSuite(Suite suite) throws Exception {
         MongoHelper.createSuite(suite);
-        return Response.ok();
+        return Response.ok().build();
     }
 
     /**
@@ -51,9 +51,9 @@ public class SuiteService {
     @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
     @Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
     @Path("/")
-    public ResponseBuilder updateSuite(Suite suite) throws Exception {
+    public Response updateSuite(Suite suite) throws Exception {
         MongoHelper.updateSuite(suite);
-        return Response.ok();
+        return Response.ok().build();
     }
 
     /**
@@ -63,9 +63,9 @@ public class SuiteService {
     @DELETE
     @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
     @Path("/{id}")
-    public ResponseBuilder removeSuite(@PathParam("id") final String id) throws Exception {
+    public Response removeSuite(@PathParam("id") final String id) throws Exception {
         MongoHelper.removeSuite(id);
-        return Response.ok();
+        return Response.ok().build();
     }
 
 
