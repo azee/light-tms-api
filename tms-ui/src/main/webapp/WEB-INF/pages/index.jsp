@@ -3,10 +3,11 @@
   <head><title>Simple jsp page</title></head>
   <body>
 
-  <form action="test.htm" method="get">
+  <form action="test" method="get">
       <input type="text" name="name">
       <input type="submit">
   </form>
+  <img src=<c:url value="/resources/img/image.jpg" /> />
 
   </body>
 </html>
