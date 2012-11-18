@@ -6,7 +6,7 @@
 
     <display-name>Light Tms Ui</display-name>
 	<welcome-file-list>
-		<welcome-file>test.jsp</welcome-file>
+		<welcome-file>/WEB-INF/pages/index.jsp</welcome-file>
 	</welcome-file-list>
 
     <servlet>
