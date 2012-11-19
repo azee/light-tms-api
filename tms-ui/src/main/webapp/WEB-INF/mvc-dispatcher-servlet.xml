@@ -13,8 +13,8 @@
 
     <context:component-scan base-package="ru.lighttms.ui.controller" />
 
-   <!-- <mvc:annotation-driven />
-    <mvc:resources mapping="/resources/**" location="/resources/" />-->
+   <mvc:annotation-driven />
+    <mvc:resources mapping="/resources/**" location="/WEB-INF/resources/" />
 
     <bean id="viewResolver"
       	   class="org.springframework.web.servlet.view.InternalResourceViewResolver" >
