@@ -28,7 +28,7 @@
         </div>
 
         <div id="content" class="container">
-            <h2> Wellcome to Light Tms </h2>
+            <h2> Suites </h2>
         </div>
     </body>
 </html>
