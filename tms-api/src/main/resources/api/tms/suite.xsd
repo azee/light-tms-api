@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns="urn:beans.tms.lighttms.ru"
+           targetNamespace="urn:beans.tms.lighttms.ru"
+           elementFormDefault="qualified"
+           xmlns:jaxb="http://java.sun.com/xml/ns/jaxb"
+jaxb:version="2.1">
+
+     <!-- Projects -->
+
+    <xs:element name="project" type="Project" />
+    <xs:complexType name="Project">
+        <xs:sequence>
+            <xs:element name="name" type="xs:string"/>
+            <xs:element name="description" type="xs:string"/>
+            <xs:element name="id" type="xs:string"/>
+            <xs:element name="suite" type="Suite" minOccurs="0"
+                                maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+
+    <!-- Suites -->
+
+    <xs:element name="suite" type="Suite" />
+    <xs:complexType name="Suite">
+        <xs:sequence>
+            <xs:element name="id" type="xs:string"/>
+            <xs:element name="name" type="xs:string"/>
+            <xs:element name="description" type="xs:string"/>
+            <xs:element name="suite" type="Suite" minOccurs="0"
+                                maxOccurs="unbounded"/>
+            <xs:element name="testCase" type="TestCase" minOccurs="0"
+                                maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+
+    <!-- TestCases -->
+
+    <xs:element name="testCase" type="TestCase"/>
+    <xs:complexType name="TestCase">
+       <xs:sequence>
+            <xs:element name="id" type="xs:string"/>
+            <xs:element name="name" type="xs:string"/>
+            <xs:element name="type" type="TestCaseType"/>
+            <xs:element name="description" type="xs:string"/>
+            <xs:element name="testStep" type="TestStep" minOccurs="0"
+                                maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+
+    <xs:element name="testCaseType" type="TestCaseType"/>
+    <xs:simpleType name="TestCaseType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="autoTest"/>
+            <xs:enumeration value="manualTest"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+
+    <!-- TestStep -->
+
+    <xs:element name="testStep" type="TestStep"/>
+    <xs:complexType name="TestStep">
+        <xs:sequence>
+            <xs:element name="actions" type="xs:string"/>
+            <xs:element name="expected" type="xs:string"/>
+            <xs:element name="link" type="xs:string" minOccurs="0"
+                                maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="level" type="Level"/>
+    <xs:simpleType name="Level">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="blocker"/>
+            <xs:enumeration value="critical"/>
+            <xs:enumeration value="normal"/>
+            <xs:enumeration value="minor"/>
+            <xs:enumeration value="trivial"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+
+
+</xs:schema>

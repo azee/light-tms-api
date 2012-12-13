@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns="urn:beans.aqua.yandex.ru"
+           targetNamespace="urn:beans.aqua.yandex.ru"
+           elementFormDefault="qualified">
+
+     <xs:complexType name="Strings">
+        <xs:sequence>
+            <xs:element name="stringsList" type="xs:string" minOccurs="0"
+                                maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="strings" type="Strings" />
+
+</xs:schema>

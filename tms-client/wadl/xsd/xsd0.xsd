@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema elementFormDefault="qualified" version="1.0" targetNamespace="urn:beans.tms.lighttms.ru" xmlns:tns="urn:beans.tms.lighttms.ru" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <xs:element name="project" type="tns:Project"/>
+
+  <xs:element name="suite" type="tns:Suite"/>
+
+  <xs:element name="testCase" type="tns:TestCase"/>
+
+  <xs:element name="testStep" type="tns:TestStep"/>
+
+  <xs:element name="user" type="tns:User"/>
+
+  <xs:complexType name="TestCase">
+    <xs:sequence>
+      <xs:element name="id" type="xs:string"/>
+      <xs:element name="name" type="xs:string"/>
+      <xs:element name="type" type="tns:TestCaseType"/>
+      <xs:element name="description" type="xs:string"/>
+      <xs:element ref="tns:testStep" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="TestStep">
+    <xs:sequence>
+      <xs:element name="actions" type="xs:string"/>
+      <xs:element name="expected" type="xs:string"/>
+      <xs:element name="link" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="Suite">
+    <xs:sequence>
+      <xs:element name="id" type="xs:string"/>
+      <xs:element name="name" type="xs:string"/>
+      <xs:element name="description" type="xs:string"/>
+      <xs:element ref="tns:suite" minOccurs="0" maxOccurs="unbounded"/>
+      <xs:element ref="tns:testCase" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="User">
+    <xs:sequence>
+      <xs:element name="id" type="xs:string"/>
+      <xs:element name="name" type="xs:string"/>
+      <xs:element name="login" type="xs:string"/>
+      <xs:element name="token" type="xs:string"/>
+      <xs:element name="expire" type="xs:long"/>
+      <xs:element name="sid" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="Project">
+    <xs:sequence>
+      <xs:element name="name" type="xs:string"/>
+      <xs:element name="description" type="xs:string"/>
+      <xs:element name="id" type="xs:string"/>
+      <xs:element ref="tns:suite" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:simpleType name="TestCaseType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="autoTest"/>
+      <xs:enumeration value="manualTest"/>
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>

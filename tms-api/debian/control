@@ -1,0 +1,15 @@
+Source: light-tms-api
+Section: misc
+Priority: extra
+Maintainer: Aziz Namazov <zyxel560k@mail.ru>
+Build-Depends:
+
+Package: light-tms-api
+Architecture: all
+Depends:
+Description: light-tms-api
+
+Package: light-tms-api-config
+Architecture: all
+Description: light-tms-api-config
+ 
