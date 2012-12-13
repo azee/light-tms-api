@@ -1,0 +1,97 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>ru.lighttms.tms</groupId>
+        <artifactId>tms-api</artifactId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>tms-client</artifactId>
+    <name>LightTms API Client</name>
+    <packaging>jar</packaging>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.jvnet.jaxb2_commons</groupId>
+            <artifactId>jaxb2-basics</artifactId>
+            <version>0.6.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jvnet.jaxb2_commons</groupId>
+            <artifactId>jaxb2-basics-annotate</artifactId>
+            <version>0.6.0</version>
+        </dependency>
+        <dependency>
+	        <groupId>com.sun.jersey</groupId>
+	        <artifactId>jersey-client</artifactId>
+	        <version>1.12</version>
+        </dependency>
+    </dependencies>
+
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.jvnet.ws.wadl</groupId>
+                <artifactId>wadl-maven-plugin</artifactId>
+                <version>1.1-SNAPSHOT</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <phase>generate-resources</phase>
+                    </execution>
+                </executions>
+                <configuration>
+                    <sourceDirectory>wadl/</sourceDirectory>
+                    <targetDirectory>src</targetDirectory>
+                    <packageName>ru.lighttms.tms.rest</packageName>
+                    <customizations>
+                        <customization>wadl/xjb/notification.xjb</customization>
+                    </customizations>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>1.6</source>
+                    <target>1.6</target>
+                    <encoding>UTF-8</encoding>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <phase>process-sources</phase>
+                        <goals>
+                            <goal>copy-dependencies</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>lib</outputDirectory>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+	    <plugin>
+	        <groupId>org.apache.maven.plugins</groupId>
+        	<artifactId>maven-source-plugin</artifactId>
+	        <version>2.2</version>
+	        <executions>
+	          <execution>
+	            <id>attach-sources</id>
+	            <phase>verify</phase>
+	            <goals>
+	              <goal>jar-no-fork</goal>
+	            </goals>
+	          </execution>
+	        </executions>
+	  </plugin>
+        </plugins>
+    </build>
+</project>

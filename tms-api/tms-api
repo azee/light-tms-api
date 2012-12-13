@@ -1,0 +1,7 @@
+location /aqua-api {
+    access_log /var/log/nginx/aqua-api.access.log;
+    error_log /var/log/nginx/aqua-api.error.log info;
+    proxy_pass              http://localhost:9001;
+    proxy_redirect          off;
+    proxy_connect_timeout   60s;
+}

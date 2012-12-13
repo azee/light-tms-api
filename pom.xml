@@ -44,9 +44,9 @@
     <packaging>pom</packaging>
 
     <modules>
-        <module>light-tms/tms-ui</module>
-        <module>light-tms/tms-api</module>
-        <module>light-tms/tms-client</module>
+        <module>tms-ui</module>
+        <module>tms-api</module>
+        <module>tms-client</module>
     </modules>
 
     <distributionManagement>
