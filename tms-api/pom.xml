@@ -234,7 +234,7 @@
                     <verbose>true</verbose>
                     <extension>true</extension>
                     <generatePackage>ru.lighttms.tms.beans</generatePackage>
-                    <generateDirectory>build</generateDirectory>
+                    <!--<generateDirectory>build</generateDirectory> -->
                     <schemaDirectory>src/main/resources/api/tms</schemaDirectory>
                     <schemaIncludes>
                         <include>**/*.xsd</include>
@@ -242,7 +242,7 @@
                     <bindingIncludes>
                         <include>**/*.xjb</include>
                     </bindingIncludes>
-                    <addCompileSourceRoot>true</addCompileSourceRoot>
+                    <!--<addCompileSourceRoot>true</addCompileSourceRoot>-->
                     <args>
                         <arg>-Xannotate</arg>
                     </args>
