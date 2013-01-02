@@ -17,7 +17,7 @@ public class Projects {
     @RequestMapping(method = RequestMethod.GET)
     public ModelAndView index(){
 
-		ModelAndView model = new ModelAndView("index");
+		ModelAndView model = new ModelAndView("projects/projects");
 
 		return model;
 	}
