@@ -4,6 +4,8 @@
         <jsp:param name="title" value="Light Tms"/>
     </jsp:include>
 
+    <jsp:include page="application/includes.jsp" />
+
     <jsp:include page="application/navbar.jsp">
         <jsp:param name="active" value="index"/>
     </jsp:include>
