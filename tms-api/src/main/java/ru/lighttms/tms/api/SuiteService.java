@@ -1,5 +1,7 @@
 package ru.lighttms.tms.api;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import ru.lighttms.tms.api.repositories.SuiteRepository;
 import ru.lighttms.tms.beans.Suite;
 import ru.lighttms.tms.helpers.MongoHelper;
 
@@ -18,7 +20,10 @@ import javax.ws.rs.core.Response;
 @Path("/suite")
 public class SuiteService {
 
-     /**
+    @Autowired
+    SuiteRepository suiteRepository;
+
+    /**
      * Return suite by id
      * @return object Suite
      * @param - String id
@@ -27,7 +32,7 @@ public class SuiteService {
     @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
     @Path("/{id}")
     public Suite getSuite(@PathParam("id") final String id) throws Exception {
-        return MongoHelper.getSuite(id);
+        return suiteRepository.findOne(id);
     }
 
     /**
@@ -39,7 +44,7 @@ public class SuiteService {
     @Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
     @Path("/")
     public Response createSuite(Suite suite) throws Exception {
-        MongoHelper.createSuite(suite);
+        suiteRepository.save(suite);
         return Response.ok().build();
     }
 
@@ -52,7 +57,7 @@ public class SuiteService {
     @Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
     @Path("/")
     public Response updateSuite(Suite suite) throws Exception {
-        MongoHelper.updateSuite(suite);
+        suiteRepository.save(suite);
         return Response.ok().build();
     }
 
@@ -64,7 +69,7 @@ public class SuiteService {
     @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
     @Path("/{id}")
     public Response removeSuite(@PathParam("id") final String id) throws Exception {
-        MongoHelper.removeSuite(id);
+        suiteRepository.delete(id);
         return Response.ok().build();
     }
 

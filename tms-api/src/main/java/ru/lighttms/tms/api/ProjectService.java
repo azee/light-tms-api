@@ -1,5 +1,7 @@
 package ru.lighttms.tms.api;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import ru.lighttms.tms.api.repositories.ProjectRepository;
 import ru.lighttms.tms.beans.Project;
 import ru.lighttms.tms.helpers.MongoHelper;
 
@@ -15,6 +17,8 @@ import java.util.List;
 
 @Path("/project")
 public class ProjectService {
+    @Autowired
+    ProjectRepository projectRepository;
 
     /**
      * Return all projects
@@ -24,7 +28,8 @@ public class ProjectService {
     @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
     @Path("/all")
     public List<Project> getAllProject() throws Exception {
-        return MongoHelper.getAllProjects();
+        return (List)projectRepository.findAll();
+
     }
 
     /**
@@ -36,7 +41,7 @@ public class ProjectService {
     @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
     @Path("/{id}")
     public Project getProject(@PathParam("id") final String id) throws Exception {
-        return MongoHelper.getProject(id);
+        return projectRepository.findOne(id);
     }
 
     /**
@@ -48,7 +53,7 @@ public class ProjectService {
     @Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
     @Path("/")
     public Response createProject(Project project) throws Exception {
-        MongoHelper.createProject(project);
+        projectRepository.save(project);
         return Response.ok().build();
     }
 
@@ -61,7 +66,7 @@ public class ProjectService {
     @Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
     @Path("/")
     public Response updateProject(Project project) throws Exception {
-        MongoHelper.updateProject(project);
+        projectRepository.save(project);
         return Response.ok().build();
     }
 
@@ -73,7 +78,7 @@ public class ProjectService {
     @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
     @Path("/{id}")
     public Response removeProject(@PathParam("id") final String id) throws Exception {
-        MongoHelper.removeProject(id);
+        projectRepository.delete(id);
         return Response.ok().build();
     }
 

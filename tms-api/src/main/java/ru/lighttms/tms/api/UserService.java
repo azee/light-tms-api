@@ -1,7 +1,9 @@
 package ru.lighttms.tms.api;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import ru.lighttms.tms.api.repositories.UserRepository;
 import ru.lighttms.tms.beans.User;
-import ru.lighttms.tms.helpers.MongoHelper;
 
 
 import javax.servlet.http.Cookie;
@@ -19,8 +21,14 @@ import java.util.Date;
 @Path("/user")
 public class UserService {
 
-    private final long TOKEN_TIMEOUT = 720000;
-    private final String SID_COOKIE_NAME = "tms-sid";
+    @Value("#{domain['token.timeout']}")
+    private long TOKEN_TIMEOUT;
+
+    @Value("#{domain['sid.coockie.name']}")
+    private String SID_COOKIE_NAME;
+
+    @Autowired
+    UserRepository userRepository;
 
     @GET
     @Path("/authorise")
@@ -40,8 +48,7 @@ public class UserService {
         user.setExpire(date.getTime() + TOKEN_TIMEOUT);
 
         //Saving user data to mongo
-        MongoHelper.authoriseUser(user);
-
+        userRepository.authoriseUser(user);
         return user;
     }
 
@@ -77,7 +84,7 @@ public class UserService {
         user.setToken(sidCookie.getValue().hashCode() + "-" + new Date().getTime());
 
         //Saving user data to mongo
-        return MongoHelper.authoriseUser(user);
+        return userRepository.authoriseUser(user);
     }
 
     @GET
@@ -91,7 +98,7 @@ public class UserService {
     @Path("/logout")
     @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
     public User logoutToken(@QueryParam("token") final String token) throws Exception {
-        MongoHelper.removeUserSession(token);
+        userRepository.removeUserSession(token);
         return new User();
     }
 

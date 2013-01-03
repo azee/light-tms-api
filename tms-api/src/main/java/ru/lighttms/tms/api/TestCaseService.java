@@ -1,5 +1,7 @@
 package ru.lighttms.tms.api;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import ru.lighttms.tms.api.repositories.TestCaseRepository;
 import ru.lighttms.tms.beans.TestCase;
 import ru.lighttms.tms.helpers.MongoHelper;
 
@@ -15,7 +17,10 @@ import javax.ws.rs.core.Response;
 
 
 @Path("/testcase")
-public class CaseService {
+public class TestCaseService {
+
+    @Autowired
+    TestCaseRepository testCaseRepository;
 
      /**
      * Return testcase by id
@@ -26,7 +31,7 @@ public class CaseService {
     @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
     @Path("/{id}")
     public TestCase getTestCase(@PathParam("id") final String id) throws Exception {
-        return MongoHelper.getTestCase(id);
+        return testCaseRepository.findOne(id);
     }
 
     /**
@@ -38,7 +43,7 @@ public class CaseService {
     @Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
     @Path("/")
     public Response createTestCase(TestCase testCase) throws Exception {
-        MongoHelper.createTestCase(testCase);
+        testCaseRepository.save(testCase);
         return Response.ok().build();
     }
 
@@ -51,7 +56,7 @@ public class CaseService {
     @Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
     @Path("/")
     public Response updateTestCase(TestCase testCase) throws Exception {
-        MongoHelper.updateTestCase(testCase);
+        testCaseRepository.save(testCase);
         return Response.ok().build();
     }
 
@@ -63,7 +68,7 @@ public class CaseService {
     @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
     @Path("/{id}")
     public Response removeTestCase(@PathParam("id") final String id) throws Exception {
-        MongoHelper.removeTestCase(id);
+        testCaseRepository.delete(id);
         return Response.ok().build();
     }
 
