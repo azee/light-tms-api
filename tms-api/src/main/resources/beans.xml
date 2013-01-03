@@ -41,6 +41,4 @@
 
     <mongo:repositories base-package="ru.lighttms.tms.repositories" repository-impl-postfix="CustomImpl"/>
 
-
-    <!--<bean class="ru.yandex.aqua.utils.CascadingMongoEventListener" />-->
 </beans>

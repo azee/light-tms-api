@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
-           xmlns="urn:beans.aqua.yandex.ru"
-           targetNamespace="urn:beans.aqua.yandex.ru"
+           xmlns="urn:beans.tms.lighttms.ru"
+           targetNamespace="urn:beans.tms.lighttms.ru"
            elementFormDefault="qualified">
 
      <xs:complexType name="Strings">
